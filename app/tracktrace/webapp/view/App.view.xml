@@ -1,0 +1,11 @@
+<mvc:View controllerName="tracktrace.controller.App"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt">
+   
+        <App id="app">
+        </App>
+ 
+</mvc:View>

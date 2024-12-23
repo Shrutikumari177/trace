@@ -1,0 +1,22 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <SelectDialog
+        id="SecurityGateinValueHelp"
+        noDataText="Loading..."
+        title="Select Material No"
+        search="onValueHelpSearch"
+        liveChange="onValueHelpSearch"
+        confirm="onValueHelpClosevoy"
+        cancel="onValueHelpClosevoy"
+        items="{materialModel>/materials}"
+        initialFocus="SearchField">
+        <StandardListItem 
+            id="IDGenStandardListItem"
+            title="{materialModel>productCode}"
+            description=""
+            iconDensityAware="false"
+            iconInset="false"
+            type="Active" />
+    </SelectDialog>
+</core:FragmentDefinition>
