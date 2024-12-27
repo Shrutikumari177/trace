@@ -9,18 +9,9 @@
     displayBlock="true"
 >
     <ScrollContainer id="_IDGenScrollContainer1" vertical="true" height="100%">
-        <tnt:ToolHeader id="shellLikeToolHeaderOnlyMandatoryControls" class="sapUiTinyMargin">
-            <Image 
-                id="_IDGenImage" 
-                src="test-resources/sap/tnt/images/SAP_Logo.png" 
-                decorative="false" 
-                press="onLogoPressed" 
-                tooltip="SAP Logo">
-                <layoutData>
-                    <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData" priority="NeverOverflow"/>
-                </layoutData>
-            </Image>
-            <Title id="_IDGenTitle" text="Production Page" wrapping="false">
+        <tnt:ToolHeader  id="shellLikeToolHeaderOnlyMandatoryControls" class="sapUiTinyMargin">
+          
+            <Title id="_IDGenTitle" textAlign="Center" text="Production Page" wrapping="false">
                 <layoutData>
                     <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1" priority="Disappear"/>
                 </layoutData>
@@ -42,11 +33,10 @@
                     <l:BlockLayoutRow id="_IDGenBlockLayoutRow1">
                         <l:BlockLayoutCell id="_IDGenBlockLayoutCell1" width="90%">
                             <HBox id="headerPage">
-                                <Label id="_IDGenLabel1" class="sapUiTinyMarginTop" design="Bold" text="Product Code"/>
+                                <Label id="_IDGenLabel1" class="sapUiTinyMarginTop" design="Bold" text="Product Order"/>
                                 <Input id="productReqNo" class="sapUiTinyMarginBegin" width="200px" showValueHelp="true" valueHelpRequest="onServiceRequestNumber" />
-                                <Label id="_IDGenLabel12" class="sapUiTinyMarginTop sapUiLargeMarginBegin" design="Bold" text="Material" />
-                                <Input id="ppId" class="sapUiTinyMarginBegin" width="200px" />
-                                <Button id="goBtn" class="sapUiTinyMarginBegin" text="GO" press="onGoPress"/>
+                                <Button id="generateQrBtn1" class="sapUiTinyMarginBegin" type="Emphasized" text="GO" press="onGoPress"/>
+                                <Button id="generateQrBtn" class="sapUiTinyMarginBegin" type="Emphasized" text="Generate QR" press="onGenerateQRPress"/>
                            </HBox>
                         </l:BlockLayoutCell>
                     </l:BlockLayoutRow>
@@ -54,11 +44,29 @@
 
                     <l:BlockLayoutRow id="_IDGenBlockLayoutRow2" visible="false">
                         <l:BlockLayoutCell id="_IDGenBlockLayoutCell2" width="90%">
+                <Dialog id="qrCodeDialog1" titleAlignment="Center" title="QR Code" horizontalScrolling="false" verticalScrolling="false">
+                <customHeader>
+                    <Bar>
+                         <contentMiddle>
+                             <Title text="QR Code" />
+                         </contentMiddle>
+                         <contentRight>
+                             <Button icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
+                         </contentRight>
+                  </Bar>
+                </customHeader>
+                    <content>
+                        <Image id="qrCodeDialogImage1" class="qrImage" width="200px" height="200px" />
+                    </content>
+                    <endButton>
+                        <Button text="Print" press="onPrintQR" />
+                    </endButton>
+                </Dialog>
                 <Table id="createTypeTable"
                      width="auto"
                      contextualWidth="Auto"
                      class="borderedTable"
-                     mode="SingleSelectMaster"
+                     mode="SingleSelectLeft"
                      sticky="ColumnHeaders"
                      noDataText="Loading ..."
                      items="{materialDataModel>/materials}"
@@ -76,12 +84,11 @@
                   <Column id="_IDGenColum" width="70px" hAlign="Center">
                       <Label id="_IDGenLabel4" text="Expiry Date"/>
                   </Column>
-                  <Column id="_IDGenColum2" width="70px" hAlign="Center">
-                      <Label id="_IDGenLabe5" text="QR Code" textAlign="Center"/>
-                  </Column>
-
                   <Column id="_IDGenColum3" width="70px" hAlign="Center">
                       <Label id="_IDGenLabe6" text="Prodcution ID" textAlign="Center"/>
+                  </Column>
+                    <Column id="_IDGenColum2" width="70px" hAlign="Center">
+                      <Label id="_IDGenLabe5" text="QR Code" textAlign="Center"/>
                   </Column>
               </columns>
     <ColumnListItem id="_istItem1" class="borderedRow" press="onMaterialRowSelect">
@@ -90,8 +97,21 @@
             <Text id="_IDGenText20" class="inputItem"  text="{materialDataModel>batchId}" />
             <Text id="_IDGenText21" class="inputItem"  text="{materialDataModel>manufacturingDate}" />
             <Text id="_IDGenText22" class="inputItem"  text="{materialDataModel>expiryDate}" />
-            <Link id="_IDGenText23" class="inputItem"  text="{materialDataModel>qrCode}" />
+            <!-- <Link id="_IDGenText23" class="inputItem"  text="{materialDataModel>qrCode}" /> -->
+            <!-- <Link text="View QR Code" 
+                      href="{materialDataModel>qrCode}" 
+                      target="_blank" 
+                      visible="{= ${materialDataModel>qrCode} ? true : false }" /> -->
+                    
             <Text id="_IDGenText24" class="inputItem"  text="{materialDataModel>productionId}" />
+              <Link text="View QR Code" 
+                      visible="{= ${materialDataModel>qrCode} ? true : false }"
+                      press=".onViewQRCodePress" 
+                      >
+                    <customData>
+                        <core:CustomData key="qrCode" value="{materialDataModel>qrCode}" />
+                    </customData>
+                </Link>
             
         </cells>
     </ColumnListItem>

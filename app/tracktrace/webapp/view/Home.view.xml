@@ -1,0 +1,83 @@
+<mvc:View controllerName="tracktrace.controller.Home"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns:f="sap.f"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt">
+   
+    <OverflowToolbar
+        id="_IDGenOverflowToolbar9"
+        height="50px"
+    >
+        <Title
+            id="pageHeader"
+            text="Track and Trace"
+            textAlign="Center"
+        />
+    </OverflowToolbar>
+    <Page
+        id="page"
+        showHeader="false"
+        title="{i18n>title}"
+    >
+        <content>
+
+          <GenericTile
+                id="_IDGenGenericTile3"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout"
+                header="Create Order"
+                press="onPressCreateOrderTile"
+            >
+                <TileContent id="_IDGenTileContent3">
+                    <ImageContent
+                        id="_IDGenImageContent3"
+                        src="sap-icon://decision"
+                    />
+                </TileContent>
+            </GenericTile>
+            
+            <GenericTile
+                id="_IDGenGenericTile1"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout"
+                header="Production QR"
+                press="onPressOnBoxQrTile"
+            >
+                <TileContent id="_IDGenTileContent1">
+                    <ImageContent
+                        id="_IDGenImageContent1"
+                        src="sap-icon://decision"
+                    />
+                </TileContent>
+            </GenericTile>
+
+             <GenericTile
+                id="_IDGenGenericTile4"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout"
+                header="IC QR"
+                press="onPressOnIcQrTile"
+            >
+                <TileContent id="_IDGenTileContent4">
+                    <ImageContent
+                        id="_IDGenImageContent4"
+                        src="sap-icon://clinical-order"
+                    />
+                </TileContent>
+            </GenericTile>
+           
+            <GenericTile
+                id="_IDGenGenericTile2"
+                class="sapUiSmallMarginBegin sapUiSmallMarginTop tileLayout"
+                header="OC QR"
+                press="onPressOnOcQrTile"
+            >
+                <TileContent id="_IDGenTileContent2">
+                    <ImageContent
+                        id="_IDGenImageContent2"
+                        src="sap-icon://clinical-order"
+                    />
+                </TileContent>
+            </GenericTile>
+        </content>
+    </Page>
+ 
+</mvc:View>

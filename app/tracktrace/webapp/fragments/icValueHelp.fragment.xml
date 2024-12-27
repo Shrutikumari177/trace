@@ -2,18 +2,18 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <SelectDialog
-        id="SecurityGateinValueHelp"
+        id="SecurityGateinValueHelp1"
         noDataText="Loading..."
         title="Select Material No"
         search="onValueHelpSearch"
         liveChange="onValueHelpSearch"
         confirm="onValueHelpClosevoy"
         cancel="onValueHelpClosevoy"
-        items="{uniqueProductModel>/products}"
+        items="{materialModel>/materials}"
         initialFocus="SearchField">
         <StandardListItem 
-            id="IDGenStandardListItem"
-            title="{uniqueProductModel>productCode}"
+            id="IDGenStandardListItem1"
+            title="{materialModel>productionCode}"
             description=""
             iconDensityAware="false"
             iconInset="false"

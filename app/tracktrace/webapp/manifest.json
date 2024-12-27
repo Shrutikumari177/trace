@@ -91,17 +91,61 @@
       },
       "routes": [
         {
-          "name": "RouteManufacturing",
+          "name": "home",
           "pattern": ":?query:",
           "target": [
+            "TargetHome"
+          ]
+        },
+        {
+          "name": "RouteManufacturing",
+          "pattern": "manufacturing",
+          "target": [
             "TargetManufacturing"
+          ]
+        },
+        {
+          "name": "onRouteCreatePage",
+          "pattern": "create",
+          "target": [
+            "TargetCreatePage"
+          ]
+        },
+        {
+          "name": "onRouteOCPage",
+          "pattern": "ocPage",
+          "target": [
+            "TargetOCPage"
+          ]
+        },
+        {
+          "name": "onRouteICPage",
+          "pattern": "icPage",
+          "target": [
+            "TargetICPage"
           ]
         }
       ],
       "targets": {
+        "TargetHome": {
+          "id": "home",
+          "name": "Home"
+        },
         "TargetManufacturing": {
           "id": "Manufacturing",
           "name": "Manufacturing"
+        },
+        "TargetCreatePage": {
+          "id": "createProduct",
+          "name": "createProduct"
+        },
+        "TargetOCPage": {
+          "id": "OCProductPage",
+          "name": "OCProduct"
+        },
+        "TargetICPage": {
+          "id": "OCIcQrPage",
+          "name": "ICQrGenerator"
         }
       }
     },

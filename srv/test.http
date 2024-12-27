@@ -1,5 +1,16 @@
 ###
 GET http://localhost:4004/odata/v4/trackservice/$metadata
 
+###
+POST http://localhost:4004/odata/v4/trackservice/PerfumeBottles
+Content-Type: application/json
+
+{
+                    "productCode" : "P0001",
+                    "batchId"         : "B0001",
+                    "qrCode"          : " https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=%7B%22productCode%22%3A%22P001%22%2C%22batchId%22%3A%22B001%22%2C%22manufacturingDate%22%3A%222024-01-01%22%2C%22expiryDate%22%3A%222025-01-01%22%2C%22qrCode%22%3A%22%22%2C%22productionId%22%3A%22PR001%22%7D",
+                    "productionId"      : "PI001"
+}
+
 
 ###

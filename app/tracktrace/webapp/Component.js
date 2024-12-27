@@ -1,7 +1,23 @@
+sap.ui.loader.config({
+    paths: {
+      "external/PDF": "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min"
+    },
+    shim: {
+      "external/PDF": {
+        amd: true,
+        exports: "JSPDF"
+      }
+    }
+});
+
 sap.ui.define([
     "sap/ui/core/UIComponent",
     "tracktrace/model/models"
-], (UIComponent, models) => {
+    
+    
+],
+
+(UIComponent, models) => {
     "use strict";
 
     return UIComponent.extend("tracktrace.Component", {
@@ -11,6 +27,7 @@ sap.ui.define([
                 "sap.ui.core.IAsyncContentCreation"
             ]
         },
+        
 
         init() {
             // call the base component's init function

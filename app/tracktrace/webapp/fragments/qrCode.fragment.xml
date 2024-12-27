@@ -1,0 +1,8 @@
+<Dialog id="qrCodeDialog" title="QR Code" horizontalScrolling="false" verticalScrolling="false">
+    <content>
+        <Image id="qrCodeDialogImage" width="150px" height="150px" />
+    </content>
+    <endButton>
+        <Button text="Close" press="onCloseDialog" />
+    </endButton>
+</Dialog>
