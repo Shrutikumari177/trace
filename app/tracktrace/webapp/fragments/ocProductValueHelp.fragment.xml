@@ -2,18 +2,18 @@
     xmlns="sap.m"
     xmlns:core="sap.ui.core">
     <SelectDialog
-        id="productValueHelp"
+        id="ocProductValueHelp"
         noDataText="Loading..."
         title="Select Material No"
         search="onValueHelpSearch"
         liveChange="onValueHelpSearch"
-        confirm="onValueHelpSelectItem"
+        confirm="onOCValueConfirmItem"
         cancel="onValueHelpClosevoy"
         items="{uniqueProductModel>/products}"
         initialFocus="SearchField">
         <StandardListItem 
-            id="IDGenStandardListItem"
-            title="{uniqueProductModel>batchId}"
+            id="ocProductValueHelp_StandardListItem"
+            title="{uniqueProductModel>BatchId}"
             description=""
             iconDensityAware="false"
             iconInset="false"

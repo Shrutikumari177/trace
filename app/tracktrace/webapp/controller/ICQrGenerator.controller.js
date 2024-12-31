@@ -51,7 +51,7 @@ sap.ui.define([
                 let oModel = this.getView().getModel("materialModel");
                 let modelData = oModel.getData().materials
                 let filterData = modelData.filter(item => {
-                    return item.productionCode === value
+                    return item.batchId === value
                 })
                 let dataModel = new JSONModel({ materials: filterData })
                 this.getView().setModel(dataModel, "materialDataModel")

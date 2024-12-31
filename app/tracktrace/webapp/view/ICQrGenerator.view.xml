@@ -77,7 +77,7 @@
                                 id="_IDGenLabel1"
                                 class="sapUiTinyMarginTop"
                                 design="Bold"
-                                text="Production Order No"
+                                text="Batch ID"
                             />
                             <Input
                                 id="productReqNo"
@@ -127,7 +127,7 @@
                                 >
                                     <Label
                                         id="_IDGenLabel0"
-                                        text="Packaging"
+                                        text="Seq No"
                                     />
                                 </Column>
                                 <Column

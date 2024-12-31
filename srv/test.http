@@ -14,3 +14,37 @@ Content-Type: application/json
 
 
 ###
+POST http://localhost:4004/odata/v4/trackservice/MaterialBox
+Content-Type: application/json
+
+{
+ "ProductCode": "MAT001",
+  "BatchID": "Batch123",
+  "ManufacturingDate": "2024-08-14",
+  "ExpiryDate": "2025-08-14",
+  "ProductionOrder": "POO01",
+  "SeqNo": 4
+}
+
+
+###
+GET http://localhost:4004/odata/v4/trackservice/MaterialBox
+
+
+####
+
+POST http://localhost:4004/odata/v4/trackservice/InnerContainer
+Content-Type: application/json
+
+{
+  "Boxes": [
+    { "BoxID": "BOX-4000001" },
+    { "BoxID": "BOX-4000002" }
+  
+  ]
+ 
+  
+}
+
+###
+GET http://localhost:4004/odata/v4/trackservice/InnerContainer

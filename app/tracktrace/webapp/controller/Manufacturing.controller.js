@@ -21,35 +21,51 @@ sap.ui.define([
                 ]
             };
 
-            var uniqueProductCodes = [...new Set(oData.materials.map(item => item.productCode))];
+            var uniqueProductCodes = [...new Set(oData.materials.map(item => item.batchId))];
 
-             var uniqueData = uniqueProductCodes.map(code => ({ productCode: code }));
+             var uniqueData = uniqueProductCodes.map(code => ({ batchId: code }));
              var oUniqueModel = new sap.ui.model.json.JSONModel({ products: uniqueData });
              this.getView().setModel(oUniqueModel, "uniqueProductModel");
 
              var oModel = new sap.ui.model.json.JSONModel(oData);
              this.getView().setModel(oModel, "materialModel");
+             this._loadInitialData()
         },
 
-        onValueHelpClosevoy: async function (oEvent) {
+        _loadInitialData :async function(){
+             let oModel = this.getOwnerComponent().getModel()
+             let url = "BoxLineItem"
+             let oBindList = oModel.bindList(`/${url}`)
+             try{
+                 let oContext =await oBindList.requestContexts(0,Infinity)
+                 if(oContext.length === 0){
+                    MessageToast.show("Data not Found!") 
+                 }
+                let oData =  oContext.map(item=>item.getObject())
+                let pModel = new JSONModel()
+                pModel.setData({perfumeItem: oData})
+                this.getView().setModel(pModel,"perfumeModel")
+                console.log("perfumes data is: ", this.getView().getModel("perfumeModel").getData())
+             }
+             catch(error){
+                console.log(`Error when read ${url} entity`)
+             }
+         },
+
+        onValueHelpSelectItem: async function (oEvent) {
             const oSelectedItem = oEvent.getParameter("selectedItem");
+            let tableLayout = this.byId("boxProduct_BlockLayoutRow2")
             if (oSelectedItem) {
                 const sSelectedValue = oSelectedItem.getTitle();
-                this._oInputField.setValue(sSelectedValue);
+                await this._oInputField.setValue(sSelectedValue);
+                await this.getBindServices(sSelectedValue);
+                tableLayout.setVisible(true)
+
             }
         }, 
 
-        onGoPress:async function(){
-            let oInput = this.byId("productReqNo").getValue()
-            let tableLayout = this.byId("_IDGenBlockLayoutRow2")
-            if(oInput){
-                await this.getBindServices(oInput)
-                tableLayout.setVisible(true)
-            }
-        },
-
-        onGenerateQRPress: function(){
-          let oTable = this.byId("createTypeTable")
+        onGenerateQRPress:async function(){
+          let oTable = this.byId("boxProduct_productTypeTable")
           let oSelectedItem = oTable.getSelectedItem()
           if(!oSelectedItem){
              MessageToast.show("Please select any item")
@@ -60,11 +76,29 @@ sap.ui.define([
           let qrPayload = JSON.stringify(rowData);
           let qrCodeUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrPayload);
             console.log("Generated QR Code URL: ", qrCodeUrl);
-            let oImage = this.getView().byId("qrCodeImage");
-            rowData.qrCode = qrCodeUrl
+            rowData.qrCode = qrCodeUrl;
+            await this._postQrData(rowData,qrCodeUrl)
             this.getView().getModel("materialDataModel").refresh()
-            oImage.setSrc(qrCodeUrl);
-            oImage.setVisible(true);
+        },
+
+        _postQrData :async function(rowData,qrCodeUrl){
+            const {productCode,batchId,manufacturingDate} = rowData
+            let boxModel = this.getOwnerComponent().getModel()
+           let boxPayload = {
+            productCode : productCode,
+            QrCode : qrCodeUrl,
+            BatchId : batchId,
+            CreationDate : manufacturingDate
+           }
+           let oBindList = boxModel.bindList("/BoxLineItem");
+            oBindList.create(boxPayload, true)
+            oBindList.attachCreateCompleted((oEvent) => {
+                let params = oEvent.getParameters();
+                if (params.success) {
+                   let response= params.context.getObject()
+                   console.log("Response",response);
+                }
+            })
         },
 
         onViewQRCodePress: function (oEvent) {
@@ -73,45 +107,37 @@ sap.ui.define([
                 MessageToast.show("No QR Code available!");
                 return;
             }            
-            let oDialog = this.byId("qrCodeDialog1");
-            let oImage = this.byId("qrCodeDialogImage1");
+            let oDialog = this.byId("boxProduct_qrCodeDialog");
+            let oImage = this.byId("boxProduct_qrCodeDialogImage");
             oImage.setSrc(qrCodeUrl);
             oDialog.open();
         },
         
         onCloseDialog: function () {
-            this.byId("qrCodeDialog1").close();
+            this.byId("boxProduct_qrCodeDialog").close();
         }, 
         
         onPrintQR: function () {
-            var oImage = this.byId("qrCodeDialogImage2");
-      
+            var oImage = this.byId("boxProduct_qrCodeDialogImage");
             var qrImageSrc = oImage.getSrc();
-      
             if (!qrImageSrc) {
                 sap.m.MessageBox.error("QR Code is not available.");
                 return;
             }
-      
             var { jsPDF } = window.jspdf;
             var doc = new jsPDF();
-      
             var startX = 40;
             var startY = 40;
-      
-      
             doc.addImage(qrImageSrc, 'PNG', startX, startY, 50, 50);
-      
             doc.save("ICQRCode.pdf");
         },
 
         getBindServices: async function (value) {
             try {
-                debugger
                 let oModel = this.getView().getModel("materialModel");
                 let modelData = oModel.getData().materials
                 let filterData = modelData.filter(item=>{
-                    return item.productCode === value
+                    return item.batchId === value
                 })
                 let dataModel = new JSONModel({materials:filterData})
                 this.getView().setModel(dataModel,"materialDataModel")

@@ -13,7 +13,7 @@
         initialFocus="SearchField">
         <StandardListItem 
             id="IDGenStandardListItem1"
-            title="{materialModel>productionCode}"
+            title="{materialModel>batchId}"
             description=""
             iconDensityAware="false"
             iconInset="false"

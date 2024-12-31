@@ -9,144 +9,143 @@
     displayBlock="true"
 >
 
-	 <ScrollContainer id="IDGenScrollContainer1" vertical="true" height="100%">
+	 <ScrollContainer id="OCproduct_ScrollContainer" vertical="true" height="100%">
         <tnt:ToolHeader  id="shellOnlyMandatoryControls" class="sapUiTinyMargin">
           
-            <Title id="IDGenTitle" textAlign="Center" text="OC QR Generator" wrapping="false">
+            <Title id="OCproduct_Title" textAlign="Center" text="OC QR Generator" wrapping="false">
                 <layoutData>
-                    <OverflowToolbarLayoutData id="IDGenOverflowToolbarLayoutData1" priority="Disappear"/>
+                    <OverflowToolbarLayoutData id="OCproduct_OverflowToolbarLayoutData" priority="Disappear"/>
                 </layoutData>
             </Title>
-            <ToolbarSpacer id="IDGenToolbarSpacer" />
+            <ToolbarSpacer id="OCproduct_ToolbarSpacer" />
             <Avatar 
-                id="IDGenAvatar" 
+                id="OCproduct_IDGenAvatar" 
                 src="test-resources/sap/tnt/images/Woman_avatar_01.png" 
                 displaySize="XS" 
                 press=".onAvatarPressed" 
                 tooltip="Profile">
                 <layoutData>
-                    <OverflowToolbarLayoutData id="IDGenOverflowToolbarLayoutData2" priority="NeverOverflow"/>
+                    <OverflowToolbarLayoutData id="OCproduct_OverflowToolbarLayoutData2" priority="NeverOverflow"/>
                 </layoutData>
             </Avatar>
         </tnt:ToolHeader>
-            <l:VerticalLayout id="IDGenVerticalLayout1" width="100%">
-                <l:BlockLayout id="IDGenBlockLayout1" background="Dashboard">
-                    <l:BlockLayoutRow id="_DGenBlockLayoutRow1">
-                        <l:BlockLayoutCell id="IDGenBlockLayoutCell1" width="90%">
-                            <HBox id="headerPage1">
-                                <Label id="_IDGenLabl1" class="sapUiTinyMarginTop" design="Bold" text="Product Order"/>
-                                <Input id="productReqNo1" class="sapUiTinyMarginBegin" width="200px" showValueHelp="true" valueHelpRequest="onServiceRequestNumber" />
-                                <Button id="generateQrBtn2" class="sapUiTinyMarginBegin" type="Emphasized" text="GO" press="onGoPress"/>
-                                <Button id="generateQrBtn3" class="sapUiTinyMarginBegin" type="Emphasized" text="Generate OC QR" press="onGenerateOCQRPress"/>
-                                <Image id="qrCodeImage" width="150px" height="150px" visible="false" />
+            <l:VerticalLayout id="OCproduct_VerticalLayout" width="100%">
+                <l:BlockLayout id="OCproduct_BlockLayout" background="Dashboard">
+                    <l:BlockLayoutRow id="OCproduct_BlockLayoutRow">
+                        <l:BlockLayoutCell id="OCproduct_GenBlockLayoutCell" width="90%">
+                            <HBox id="OCproduct_headerPage1">
+                                <Label id="OCproduct_ProductOrderLabel" class="sapUiTinyMarginTop" design="Bold" text="Batch ID"/>
+                                <Input id="OCproduct_productOrder" class="sapUiTinyMarginBegin" width="200px" showValueHelp="true" valueHelpRequest="onServiceRequestNumber" />
                            </HBox>
                         </l:BlockLayoutCell>
                     </l:BlockLayoutRow>
 
 
-                    <l:BlockLayoutRow id="IDGenBlockLayoutRow2" visible="true">
-                        <l:BlockLayoutCell id="IDGenBlockLayoutCell2" width="90%">
-               <Dialog id="qrCodeDialog2" titleAlignment="Center" horizontalScrolling="false" verticalScrolling="false">
+                    <l:BlockLayoutRow id="OCproduct_BlockLayoutRow2" visible="true">
+                        <l:BlockLayoutCell id="OCproduct_BlockLayoutCell2" width="90%">
+                   <Dialog id="OCproduct_qrCodeDialog" horizontalScrolling="false" verticalScrolling="false">
                  <customHeader>
-                    <Bar>
+                    <Bar id="OCproduct_bar">
                          <contentMiddle>
-                             <Title text="QR Code" />
+                             <Title id="OCproduct_barQrTitle" text="QR Code" />
                          </contentMiddle>
                          <contentRight>
-                             <Button icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
+                             <Button id="OCproduct_dialogCloseBtn" icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
                          </contentRight>
                   </Bar>
                 </customHeader>
                 <content>
-                    <Image id="qrCodeDialogImage2" class="qrImage" width="200px" height="200px" />
+                    <Image id="OCproduct_qrCodeDialogImage" class="qrImage" width="200px" height="200px" />
                 </content>
                 <endButton>
-                    <Button text="Print" press="onPrintQR" />
+                    <Button id="OCproduct_QrPrintBtn" text="Print" press="onPrintQR" />
                 </endButton>
             </Dialog>
-
-<Table
-  class="OCborderedTable"
-  id="ICProductTable"
-  headerText="Products"
-  mode="MultiSelect"
-  items="{productionOrdersModel>/ProductionOrders}"
-  selectionChange="onSelectionChange">
-  <columns>
-    <!-- <Column mergeDuplicates="true" hAlign="Center">
-      <header>
-        <Text text="Packaging 1" />
-      </header>
-    </Column> -->
-    <Column hAlign="Center" mergeDuplicates="true">
-      <header>
-        <Text text="Packaging 1" />
-      </header>
-    </Column>
-    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-      <header>
-        <Text text="Packaging 2" />
-      </header>
-    </Column>
-    <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
-      <header>
-        <Text text="ProductCode" />
-      </header>
-    </Column>
-    <Column hAlign="Center">
-      <header>
-        <Text text="BatchId" />
-      </header>
-    </Column>
-    <Column hAlign="Center">
-      <header>
-        <Text text="StartDate" />
-      </header>
-    </Column>
-    <Column hAlign="Center">
-      <header>
-        <Text text="EndDate" />
-      </header>
-    </Column>
-    <Column hAlign="Center">
-      <header>
-        <Text text="SeqNo" />
-      </header>
-    </Column>
-    <Column hAlign="Center" mergeDuplicates="true">
-      <header>
-        <Text text="QR Code" />
-      </header>
-    </Column>
-    <Column hAlign="Center" mergeDuplicates="true">
-      <header>
-        <Text text="OC Code" />
-      </header>
-    </Column>
-  </columns>
-  <ColumnListItem class="borderedRow">
-    <cells>
-      <!-- <Text text="{productionOrdersModel>Packaging1}" /> -->
-      <Text text="{productionOrdersModel>Packaging2}" />
-      <Text text="{productionOrdersModel>Packaging3}" />
-      <Text text="{productionOrdersModel>ProductCode}" />
-      <Text text="{productionOrdersModel>BatchId}" />
-      <Text text="{productionOrdersModel>StartDate}" />
-      <Text text="{productionOrdersModel>EndDate}" />
-      <Text text="{productionOrdersModel>SeqNo}" />
-      <Link text="{productionOrdersModel>qrCode}" press="onViewOCQRCodePress">
-      <customData>
-            <core:CustomData key="qrCode" value="{productionOrdersModel>qrCode}" />
-        </customData>
-        </Link>
-      <Link text="{productionOrdersModel>OCCode}" press="onViewOCQRCodePress">
-       <customData>
-            <core:CustomData key="qrCode" value="{productionOrdersModel>OCCode}" />
-        </customData>
-      </Link>
-    </cells>
-  </ColumnListItem>
-</Table>
+            <HBox class="generateQr_area">
+             <Button text="Generate OC QR" press="onGenerateOCQRPress" type="Emphasized"/>
+            </HBox>
+                 <Table
+                   class="OCborderedTable"
+                   id="OCproduct_ProductTable"
+                   mode="MultiSelect"
+                   items="{productionOrdersModel>/ProductionOrders}"
+                  selectionChange="onSelectionChange">
+                   <columns>
+                     <!--                  <Column mergeDuplicates="true" hAlign="Center">
+                       <header>
+                         <Text text="Packaging 1" />
+                       </header>
+                     </Column> -->
+                     <Column hAlign="Center" mergeDuplicates="true">
+                       <header>
+                         <Text text="Packaging 1" />
+                       </header>
+                     </Column>
+                     <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                       <header>
+                         <Text text="Packaging 2" />
+                       </header>
+                     </Column>
+                     <Column hAlign="Center">
+                       <header>
+                         <Text text="Batch ID" />
+                       </header>
+                     </Column>
+                     <Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+                       <header>
+                         <Text text="Product Code" />
+                       </header>
+                     </Column>
+                     
+                     <Column hAlign="Center">
+                       <header>
+                         <Text text="Manufacturing Date" />
+                       </header>
+                     </Column>
+                     <Column hAlign="Center">
+                       <header>
+                         <Text text="Expiry Date" />
+                       </header>
+                     </Column>
+                     <Column hAlign="Center">
+                       <header>
+                         <Text text="SeqNo" />
+                       </header>
+                     </Column>
+                     <Column hAlign="Center" mergeDuplicates="true">
+                       <header>
+                         <Text text="QR Code" />
+                       </header>
+                     </Column>
+                     <Column hAlign="Center" mergeDuplicates="true">
+                       <header>
+                         <Text text="OC Code" />
+                       </header>
+                     </Column>
+                   </columns>
+                   <ColumnListItem class="borderedRow">
+                     <cells>
+                       <!--                  <Text text="{productionOrdersModel>Packaging1}" /> -->
+                       <Text text="{productionOrdersModel>Packaging2}" />
+                       <Text text="{productionOrdersModel>Packaging3}" />
+                       <Text text="{productionOrdersModel>ProductCode}" />
+                       <Text text="{productionOrdersModel>BatchId}" />
+                       <Text text="{productionOrdersModel>StartDate}" />
+                       <Text text="{productionOrdersModel>EndDate}" />
+                       <Text text="{productionOrdersModel>SeqNo}" />
+                       <Link text="{productionOrdersModel>qrCode}" press="onViewOCQRCodePress">
+                       <customData>
+                             <core:CustomData key="qrCode" value="{productionOrdersModel>qrCode}" />
+                         </customData>
+                         </Link>
+                       <Link text="{productionOrdersModel>OCCode}" press="onViewOCQRCodePress">
+                        <customData>
+                             <core:CustomData key="qrCode" value="{productionOrdersModel>OCCode}" />
+                         </customData>
+                       </Link>
+                     </cells>
+                   </ColumnListItem>
+                 </Table>
 
                
                         </l:BlockLayoutCell>

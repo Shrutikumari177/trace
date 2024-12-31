@@ -8,93 +8,99 @@
     xmlns:core="sap.ui.core"
     displayBlock="true"
 >
-    <ScrollContainer id="_IDGenScrollContainer1" vertical="true" height="100%">
-        <tnt:ToolHeader  id="shellLikeToolHeaderOnlyMandatoryControls" class="sapUiTinyMargin">
+    <ScrollContainer id="boxProduct_ScrollContainer" vertical="true" height="100%">
+        <tnt:ToolHeader  id="boxProduct_ProductTableshellLikeToolHeaderOnlyMandatoryControls" class="sapUiTinyMargin">
           
-            <Title id="_IDGenTitle" textAlign="Center" text="Production Page" wrapping="false">
+            <Title id="boxProduct_Title" textAlign="Center" text="Box QR Generator" wrapping="false">
                 <layoutData>
-                    <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData1" priority="Disappear"/>
+                    <OverflowToolbarLayoutData id="boxProduct_OverflowToolbarLayoutData" priority="Disappear"/>
                 </layoutData>
             </Title>
-            <ToolbarSpacer id="_IDGenToolbarSpacer" />
+            <ToolbarSpacer id="boxProduct_ToolbarSpacer" />
             <Avatar 
-                id="_IDGenAvatar" 
+                id="boxProduct_Avatar" 
                 src="test-resources/sap/tnt/images/Woman_avatar_01.png" 
                 displaySize="XS" 
                 press=".onAvatarPressed" 
                 tooltip="Profile">
                 <layoutData>
-                    <OverflowToolbarLayoutData id="_IDGenOverflowToolbarLayoutData2" priority="NeverOverflow"/>
+                    <OverflowToolbarLayoutData id="boxProduct_OverflowToolbarLayoutData2" priority="NeverOverflow"/>
                 </layoutData>
             </Avatar>
         </tnt:ToolHeader>
-            <l:VerticalLayout id="_IDGenVerticalLayout1" width="100%">
-                <l:BlockLayout id="_IDGenBlockLayout1" background="Dashboard">
-                    <l:BlockLayoutRow id="_IDGenBlockLayoutRow1">
-                        <l:BlockLayoutCell id="_IDGenBlockLayoutCell1" width="90%">
-                            <HBox id="headerPage">
-                                <Label id="_IDGenLabel1" class="sapUiTinyMarginTop" design="Bold" text="Product Order"/>
-                                <Input id="productReqNo" class="sapUiTinyMarginBegin" width="200px" showValueHelp="true" valueHelpRequest="onServiceRequestNumber" />
-                                <Button id="generateQrBtn1" class="sapUiTinyMarginBegin" type="Emphasized" text="GO" press="onGoPress"/>
-                                <Button id="generateQrBtn" class="sapUiTinyMarginBegin" type="Emphasized" text="Generate QR" press="onGenerateQRPress"/>
+            <l:VerticalLayout id="boxProduct_VerticalLayout" width="100%">
+                <l:BlockLayout id="boxProduct_BlockLayout" background="Dashboard">
+                    <l:BlockLayoutRow id="boxProduct_BlockLayoutRow">
+                        <l:BlockLayoutCell id="boxProduct_BlockLayoutCell" width="90%">
+                            <HBox id="boxProduct_headerPage">
+                                <Label id="boxProduct_prodcutionOrderLabel" class="sapUiTinyMarginTop" design="Bold" text="Batch ID"/>
+                                <Input id="boxProduct_prodcutionOrderInput" class="sapUiTinyMarginBegin" width="200px" showValueHelp="true" valueHelpRequest="onServiceRequestNumber" />
                            </HBox>
                         </l:BlockLayoutCell>
                     </l:BlockLayoutRow>
 
 
-                    <l:BlockLayoutRow id="_IDGenBlockLayoutRow2" visible="false">
-                        <l:BlockLayoutCell id="_IDGenBlockLayoutCell2" width="90%">
-                <Dialog id="qrCodeDialog1" titleAlignment="Center" title="QR Code" horizontalScrolling="false" verticalScrolling="false">
+                    <l:BlockLayoutRow id="boxProduct_BlockLayoutRow2" visible="false">
+                        <l:BlockLayoutCell id="boxProduct_BlockLayoutCell2" width="90%">
+                <Dialog id="boxProduct_qrCodeDialog" titleAlignment="Center" title="QR Code" horizontalScrolling="false" verticalScrolling="false">
                 <customHeader>
-                    <Bar>
+                    <Bar id="boxProduct_bar">
                          <contentMiddle>
-                             <Title text="QR Code" />
+                             <Title id="boxProduct_dialogTitle" text="QR Code" />
                          </contentMiddle>
                          <contentRight>
-                             <Button icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
+                             <Button id="boxProduct_dialogCloseBtn" icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
                          </contentRight>
                   </Bar>
                 </customHeader>
                     <content>
-                        <Image id="qrCodeDialogImage1" class="qrImage" width="200px" height="200px" />
+                        <Image id="boxProduct_qrCodeDialogImage" class="qrImage" width="200px" height="200px" />
                     </content>
                     <endButton>
-                        <Button text="Print" press="onPrintQR" />
+                        <Button id="boxProduct_printQrBtn" text="Print" press="onPrintQR" />
                     </endButton>
                 </Dialog>
-                <Table id="createTypeTable"
-                     width="auto"
-                     contextualWidth="Auto"
+                <Table id="boxProduct_productTypeTable"
                      class="borderedTable"
                      mode="SingleSelectLeft"
-                     sticky="ColumnHeaders"
                      noDataText="Loading ..."
                      items="{materialDataModel>/materials}"
                      >
              <columns>
-                  <Column id="_IDGenColu1" width="70px" hAlign="Center">
-                      <Label id="_IDGenLabel2" text="Product Code"/>
+                 
+                  <Column id="_IDGenColu" hAlign="Center">
+                      <Label id="_IDGenLal2" text="Seq No"/>
                   </Column>
-                  <Column id="_IDGenColun2" width="70px" hAlign="Center">
+                  <Column id="_IDGenColun2" hAlign="Center">
                       <Label id="_IDGenLabel3" text="Batch ID"/>
                   </Column>
-                  <Column id="_IDGenColun3" width="70px" hAlign="Center">
+                  <Column id="_IDGenColu1" hAlign="Center">
+                      <Label id="_IDGenLabel2" text="Product Code"/>
+                  </Column>
+                  <Column id="_IDGenColun3" hAlign="Center">
                       <Label id="_IDGenLabel5" text="Manufacturing Date"/>
                   </Column>
-                  <Column id="_IDGenColum" width="70px" hAlign="Center">
+                  <Column id="_IDGenColum" hAlign="Center">
                       <Label id="_IDGenLabel4" text="Expiry Date"/>
                   </Column>
-                  <Column id="_IDGenColum3" width="70px" hAlign="Center">
+                  <Column id="_IDGenColum3" hAlign="Center">
                       <Label id="_IDGenLabe6" text="Prodcution ID" textAlign="Center"/>
                   </Column>
-                    <Column id="_IDGenColum2" width="70px" hAlign="Center">
+                    <Column  hAlign="Center">
+                      <Label text="Generate QR" textAlign="Center"/>
+                  </Column>
+                    <Column id="_IDGenColum2" hAlign="Center">
                       <Label id="_IDGenLabe5" text="QR Code" textAlign="Center"/>
                   </Column>
+                   <Column id="_IDGenColu12" hAlign="Center">
+                      <Label id="_IDGenl2" text="Packaging"/>
+                  </Column>
               </columns>
-    <ColumnListItem id="_istItem1" class="borderedRow" press="onMaterialRowSelect">
+             <ColumnListItem id="_istItem1" class="borderedRow" press="onMaterialRowSelect">
         <cells>
-            <Text id="_IDGenText19" class="inputItem" text="{materialDataModel>productCode}" />
+            <Text id="_IDGenText31" class="inputItem" text="{materialDataModel>seqNo}" />
             <Text id="_IDGenText20" class="inputItem"  text="{materialDataModel>batchId}" />
+            <Text id="_IDGenText19" class="inputItem" text="{materialDataModel>productCode}" />
             <Text id="_IDGenText21" class="inputItem"  text="{materialDataModel>manufacturingDate}" />
             <Text id="_IDGenText22" class="inputItem"  text="{materialDataModel>expiryDate}" />
             <!-- <Link id="_IDGenText23" class="inputItem"  text="{materialDataModel>qrCode}" /> -->
@@ -104,6 +110,7 @@
                       visible="{= ${materialDataModel>qrCode} ? true : false }" /> -->
                     
             <Text id="_IDGenText24" class="inputItem"  text="{materialDataModel>productionId}" />
+            <Button text="Generate QR" type="Emphasized" press="onGenerateQRPress"/>
               <Link text="View QR Code" 
                       visible="{= ${materialDataModel>qrCode} ? true : false }"
                       press=".onViewQRCodePress" 
@@ -112,12 +119,93 @@
                         <core:CustomData key="qrCode" value="{materialDataModel>qrCode}" />
                     </customData>
                 </Link>
-            
-        </cells>
-    </ColumnListItem>
-</Table>
+                            <Text id="_IDGenTex2" class="inputItem"  text="{materialDataModel>expiryDat}" />
+                   </cells>
+                </ColumnListItem>
+             </Table>
                         </l:BlockLayoutCell>
                     </l:BlockLayoutRow>
+
+
+
+
+                    <l:BlockLayoutRow id="boxProduct_LayoutRow2" visible="false">
+                        <l:BlockLayoutCell id="boxProduct_LayoutCell2" width="90%">
+                <Dialog id="boxProduct_qrCodeDialog1" titleAlignment="Center" title="QR Code" horizontalScrolling="false" verticalScrolling="false">
+                <customHeader>
+                    <Bar id="boxProduct_bar1">
+                         <contentMiddle>
+                             <Title id="boxProduct_dialogTitle1" text="QR Code" />
+                         </contentMiddle>
+                         <contentRight>
+                             <Button id="boxProduct_dialogCloseBtn1" icon="sap-icon://decline" tooltip="Close" press="onCloseDialog" />
+                         </contentRight>
+                  </Bar>
+                </customHeader>
+                    <content>
+                        <Image id="boxProduct_qrCodeDialogImage1" class="qrImage" width="200px" height="200px" />
+                    </content>
+                    <endButton>
+                        <Button id="boxProduct_printQrBtn1" text="Print" press="onPrintQR" />
+                    </endButton>
+                </Dialog>
+                <Table id="boxProduct_productTypeTable1"
+                     width="auto"
+                     contextualWidth="Auto"
+                     class="borderedTable"
+                     mode="SingleSelectLeft"
+                     sticky="ColumnHeaders"
+                     noDataText="Loading ..."
+                     items="{perfumeModel>/perfumeItem}"
+                     >
+             <columns>
+                  <Column id="IDGenColu1" width="70px" hAlign="Center">
+                      <Label id="IDGenLabel2" text="Product Code"/>
+                  </Column>
+                  <Column id="IDGenColun2" width="70px" hAlign="Center">
+                      <Label id="IDGenLabel3" text="Batch ID"/>
+                  </Column>
+                  <Column id="IDGenColun3" width="70px" hAlign="Center">
+                      <Label id="IDGenLabel5" text="Manufacturing Date"/>
+                  </Column>
+                  <Column id="IDGenColum" width="70px" hAlign="Center">
+                      <Label id="IDGenLabel4" text="Expiry Date"/>
+                  </Column>
+                  <Column id="IDGenColum3" width="70px" hAlign="Center">
+                      <Label id="IDGenLabe6" text="Prodcution ID" textAlign="Center"/>
+                  </Column>
+                    <Column id="IDGenColum2" width="70px" hAlign="Center">
+                      <Label id="IDGenLabe5" text="QR Code" textAlign="Center"/>
+                  </Column>
+              </columns>
+             <ColumnListItem id="istItem1" class="borderedRow" press="onMaterialRowSelect">
+        <cells>
+            <Text id="IDGenText19" class="inputItem" text="{perfumeModel>productCode}" />
+            <Text id="IDGenText20" class="inputItem"  text="{perfumeModel>batchId}" />
+            <Text id="IDGenText21" class="inputItem"  text="{perfumeModel>createdAt}" />
+            <Link id="IDGenText22" class="inputItem"  text="{perfumeModel>qrCode}" />
+            <!-- <Link id="_IDGenText23" class="inputItem"  text="{perfumeModel>qrCode}" /> -->
+            <!-- <Link text="View QR Code" 
+                      href="{materialDataModel>qrCode}" 
+                      target="_blank" 
+                      visible="{= ${materialDataModel>qrCode} ? true : false }" /> -->
+                    
+            <Text id="IDGenText24" class="inputItem"  text="{perfumeModel>productionId}" />
+              <Link text="View QR Code" 
+                      visible="{= ${perfumeModel>qrCode} ? true : false }"
+                      press=".onViewQRCodePress" 
+                      >
+                    <customData>
+                        <core:CustomData key="qrCode" value="{perfumeModel>qrCode}" />
+                    </customData>
+                </Link>
+                   </cells>
+                </ColumnListItem>
+             </Table>
+                        </l:BlockLayoutCell>
+                    </l:BlockLayoutRow>
+
+
                 </l:BlockLayout>
             </l:VerticalLayout>
     </ScrollContainer>
